@@ -66,19 +66,12 @@ public class OperationPro {
 				e[i] = new OperationExpression(null,null,null);
 				List l;
 				while ( (l = gExp.getExp(e[i],limit) )==null){
-					System.out.println("计算过程出现负数,丢弃");
-					l = gExp.getExp(e[i],limit);//过程出现负数，则重新生成表达式
 				}
-				if(i>0){
-					for(int t = i-1;t>=0;t--){
-						if( (e[i].getRes().toString()).equals(e[t].getRes().toString()) ){//如果结果相同，就进行查重
-							while(check.DuCheck(l,L)){
-								System.out.println("重复");
-								l = gExp.getExp(e[i],limit);//重复则重新生成表达式
-							}
-						}
-					}
+				while(check.DuCheck(l,L)){
+					System.out.println("重复");
+					l = gExp.getExp(e[i],limit);//重复则重新生成表达式
 				}
+
 				System.out.println(l);
 				L.add(l);
 
